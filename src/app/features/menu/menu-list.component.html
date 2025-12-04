@@ -1,0 +1,79 @@
+<div class="menu-container" [@.disabled]="reduceMotion">
+  <!-- Header -->
+  <header class="menu-header" [@headerExpand]>
+    <img src="/logo-removebg-preview.png" alt="Logo" class="logo" />
+    <div class="header-text">
+      <h1>Jully Art's</h1>
+      <p class="subtitle">Arte em fazer laços</p>
+    </div>
+  </header>
+
+  <!-- Barra de Busca e Filtros -->
+  <section class="filters-section">
+    <!-- Busca por Nome -->
+    <div class="search-box">
+      <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="searchByName()" placeholder="Buscar por nome..."
+        class="search-input" />
+      <button (click)="searchByName()" class="btn btn-search">
+        <fa-icon [icon]="faSearch" fixedWidth size="xl" style="color:black"></fa-icon>
+      </button>
+    </div>
+
+    <!-- Filtro por Categoria -->
+    <div class="category-filter">
+      <button (click)="clearFilters()" [class.active]="!selectedCategory && !searchTerm" class="btn btn-category">
+        Todos
+      </button>
+      <button *ngFor="let category of categories" (click)="filterByCategory(category)"
+        [class.active]="selectedCategory === category" class="btn btn-category">
+        {{ category }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Mensagem de Erro -->
+  <div *ngIf="error" class="error-message">
+    <strong>X</strong> {{ error }}
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <p>Carregando cardápio...</p>
+  </div>
+
+  <!-- Lista de Itens -->
+  <section *ngIf="!loading" class="menu-items">
+    <div *ngIf="filteredItems.length === 0" class="no-items">
+      <p>Nenhum item encontrado</p>
+    </div>
+
+    <div class="items-grid" [@listAnimation]>
+      <a *ngFor="let item of filteredItems; let i = index; trackBy: trackByItemId" [routerLink]="['/menu', item.id]"
+        class="card-link" [style.--i]="i">
+        <app-menu-item-card [item]="item"></app-menu-item-card>
+      </a>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="menu-footer">
+    <div style="display: flex; justify-content: space-around; width: 100%;">
+      <div>
+        <h4>Redes Sociais</h4>
+        <p>Instagram: <a href="https://www.instagram.com/jully.arts.lacos" target="_blank">@jully.arts.lacos</a></p>
+        <p>whatsapp: <a href="https://wa.me/5511982476474" target="_blank">(11) 98247-6474</a></p>
+      </div>
+      <div>
+        <h4>Formas de Pagamento</h4>
+        <ul style="list-style: none;">
+          <li style="text-align: start; ">
+            <p><fa-icon [icon]="faQrcode" fixedWidth></fa-icon> Pix</p>
+          </li>
+          <li style="text-align: start;">
+            <p><fa-icon [icon]="faMoneyBillWave" fixedWidth></fa-icon> Dinheiro</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</div>

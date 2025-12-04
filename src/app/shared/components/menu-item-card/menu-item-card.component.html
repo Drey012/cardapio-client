@@ -1,0 +1,29 @@
+<div class="card">
+  <!-- Header do Card -->
+  <div class="card-header">
+    <span class="category-badge">
+      {{ getCategoryEmoji(item.categoria) }} {{ item.categoria }}
+    </span>
+    <span class="item-id">#{{ item.id }}</span>
+  </div>
+
+  <!-- Corpo do Card -->
+  <div class="card-body">
+    <!-- Imagem do Item -->
+    <div class="image-container">
+      <img [src]="getItemImage(item)" [alt]="item.nome" class="item-image" />
+    </div>
+
+    <!-- Nome do Item -->
+    <h3 class="item-name">{{ item.nome }}</h3>
+
+    <!-- Descrição -->
+    <p class="item-description">{{ item.descricao }}</p>
+
+    <!-- Preço -->
+    <div class="item-price">
+      <span class="price-label">Preço:</span>
+      <span class="price-value">{{ formatPrice(item.preco) }}</span>
+    </div>
+  </div>
+</div>

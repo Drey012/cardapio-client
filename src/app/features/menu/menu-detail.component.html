@@ -1,0 +1,70 @@
+<div class="detail-container" *ngIf="loaded && item">
+  <div class="top-row">
+    <button class="back-btn" (click)="goBack()" aria-label="Voltar">← Voltar</button>
+  </div>
+  <div class="carousel-wrapper">
+    <button class="nav prev" (click)="prev()" aria-label="Imagem anterior">‹</button>
+
+    <div class="carousel">
+      <img
+        class="carousel-image"
+        [class.fading]="fading"
+        [src]="images[currentIndex]"
+        [alt]="item.nome"
+        (click)="openModal(currentIndex)"
+      />
+    </div>
+
+    <button class="nav next" (click)="next()" aria-label="Próxima imagem">›</button>
+  </div>
+
+  <div class="thumbnails">
+    <button
+      *ngFor="let img of images; let i = index"
+      class="thumb"
+      [class.active]="i === currentIndex"
+      (click)="selectImage(i)"
+      aria-label="Selecionar imagem {{i + 1}}"
+    >
+      <img [src]="img" [alt]="item.nome + ' ' + (i+1)" />
+    </button>
+  </div>
+
+  <div class="info-row">
+    <div class="text-block">
+      <h2 class="item-title">{{ item.nome }}</h2>
+      <p class="item-description">{{ item.descricao }}</p>
+    </div>
+
+    <div class="price-block">
+      <div class="price-label">Preço</div>
+      <div class="price-value">{{ item.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</div>
+    </div>
+  </div>
+
+  <!-- Modal de imagem expandida -->
+  <div class="modal" *ngIf="modalOpen" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()" aria-label="Fechar">✕</button>
+      <img
+        [src]="images[currentIndex]"
+        [alt]="item.nome"
+        class="modal-image"
+        [class.fading]="fading"
+      />
+      <div class="modal-controls">
+        <button (click)="prev()" aria-label="Anterior">‹</button>
+        <button (click)="next()" aria-label="Próximo">›</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loaded && !item" class="not-found">
+  <button class="back-btn" (click)="goBack()" aria-label="Voltar">← Voltar</button>
+  <p>Item não encontrado.</p>
+</div>
+
+<div *ngIf="!loaded" class="loading-state">
+  <p class="loading-text">Carregando...</p>
+</div>
