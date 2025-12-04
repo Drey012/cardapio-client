@@ -22,8 +22,6 @@ export class MenuItemCardComponent {
     const emojiMap: { [key: string]: string } = {
       'Laços': '🎀',
       'Kit': '📦',
-      'Sobremesas': '🍰',
-      'Acompanhamentos': '🍟'
     };
     return emojiMap[categoria] || '';
   }

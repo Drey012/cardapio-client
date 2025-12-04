@@ -9,10 +9,12 @@
 
 /* Header */
 .menu-header {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
+  position: relative;
+  box-sizing: border-box;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  margin-top: -20px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -24,14 +26,17 @@
   background-color: rgb(231, 218, 246);
   color: #333333;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .logo {
   height: 6rem;
   width: 6rem;
-  margin-left: -100px;
-  margin-right: 20px;
+  margin: 0 20px 0 0;
   justify-self: start;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .header-text {
@@ -56,7 +61,6 @@
 
 /* Filtros */
 .filters-section {
-  margin-top: 10rem;
   margin-bottom: 30px;
   padding: 20px;
 }
@@ -142,6 +146,7 @@
   padding: 40px 20px;
   color: #999;
   font-size: 1.1rem;
+  min-height: 40vh;
 }
 
 /* Loading */
@@ -150,6 +155,7 @@
   padding: 40px;
   color: #667eea;
   font-size: 1.1rem;
+  min-height: 40vh;
 }
 
 /* Grid de Itens */
@@ -172,20 +178,24 @@
 /* Footer */
 .menu-footer {
   position: relative;
-  width: 99.6vw;
-  bottom: 0;
-  left: -16%;
+  box-sizing: border-box;
+  /* Full-bleed horizontally */
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
   max-height: 20rem;
   text-align: center;
-  margin-bottom: 40px;
+  margin-top: 40px;
   padding: 30px 0;
   background-color: rgb(231, 218, 246);
   color: #333333;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .menu-footer strong {
@@ -197,6 +207,18 @@
 @media (max-width: 768px) {
   .menu-header h1 {
     font-size: 1.8rem;
+  }
+
+  .menu-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 12px;
+  }
+
+  .logo {
+    margin: 0 0 12px 0;
+    width: 4.5rem;
+    height: 4.5rem;
   }
 
   .search-box {
@@ -220,6 +242,10 @@
     padding: 8px 15px;
     font-size: 0.85rem;
   }
+
+  .menu-footer {
+    width: 100vw;
+  }
 }
 
 @media (max-width: 480px) {
@@ -242,5 +268,10 @@
 
   .items-grid {
     grid-template-columns: 1fr;
+  }
+
+  .menu-footer {
+    width: 100vw;
+    margin-bottom: -20px;
   }
 }

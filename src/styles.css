@@ -13,6 +13,8 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f9f9f9;
   color: #333;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 body {
