@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://cardapio-server.onrender.com'
+  apiUrl: 'https://cardapio-server.onrender.com/api'
 };
