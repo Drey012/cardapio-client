@@ -21,11 +21,11 @@ cardapio-web/
 │   │   │   └── interceptors/        # Interceptadores HTTP (futuro)
 │   │   │
 │   │   ├── features/                # Funcionalidades da aplicação
-│   │   │   ├── menu/
-│   │   │   │   ├── menu-list.component.ts
-│   │   │   │   ├── menu-list.component.html
-│   │   │   │   └── menu-list.component.css
-│   │   │   └── home/                # Futuro
+│   │   │   └── menu/
+│   │   │       ├── menu-list.component.ts
+│   │   │       ├── menu-list.component.html
+│   │   │       └── menu-list.component.css
+│   │   │
 │   │   │
 │   │   ├── shared/                  # Componentes, modelos e utilitários compartilhados
 │   │   │   ├── components/
