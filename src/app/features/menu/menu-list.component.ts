@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -17,8 +17,7 @@ import { faMoneyBillWave, faQrcode, faSearch } from '@fortawesome/free-solid-svg
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule, MenuItemCardComponent, FontAwesomeModule],
   templateUrl: './menu-list.component.html',
-  styleUrls: ['./menu-list.component.css']
-  ,
+  styleUrls: ['./menu-list.component.css'],
   animations: [
     trigger('headerExpand', [
       transition(':enter', [
@@ -44,9 +43,9 @@ import { faMoneyBillWave, faQrcode, faSearch } from '@fortawesome/free-solid-svg
 })
 export class MenuListComponent implements OnInit {
   // Font Awesome icons
-  faMoneyBillWave = faMoneyBillWave;
-  faQrcode = faQrcode;
-  faSearch = faSearch;
+  readonly faMoneyBillWave = faMoneyBillWave;
+  readonly faQrcode = faQrcode;
+  readonly faSearch = faSearch;
 
   // Dados
   items: MenuItem[] = [];
@@ -56,13 +55,17 @@ export class MenuListComponent implements OnInit {
   // Estados
   loading = false;
   error: string | null = null;
-  selectedCategory: string = '';
-  searchTerm: string = '';
-
-  constructor(private menuService: MenuService, private cdr: ChangeDetectorRef) {}
+  selectedCategory = '';
+  searchTerm = '';
 
   // Detect preference for reduced motion and expose to template
-  reduceMotion = typeof window !== 'undefined' && !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  readonly reduceMotion = typeof window !== 'undefined' && 
+    !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  constructor(
+    private menuService: MenuService, 
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadItems();
@@ -173,12 +176,5 @@ export class MenuListComponent implements OnInit {
     this.searchTerm = '';
     this.filteredItems = this.items;
     this.error = null;
-  }
-
-  /**
-   * trackBy para *ngFor — usa o `id` do item para controlar a renderização
-   */
-  trackByItemId(index: number, item: MenuItem): number | string {
-    return item.id;
   }
 }

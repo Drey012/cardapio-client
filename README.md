@@ -175,6 +175,7 @@ interface MenuItem {
   descricao: string;
   preco: number;
   categoria: string;
+  imagens?: string[];
 }
 ```
 
@@ -198,16 +199,16 @@ interface ApiResponse<T> {
 
 | Cor | Valor | Uso |
 |-----|-------|-----|
-| Primária | `#667eea` | Botões, links, destaque |
-| Secundária | `#764ba2` | Gradientes |
+| Primária | `#e7daf6` | Header, Footer |
+| Secundária | `#c0aed8` | Botões,Barra de pesquisa, Detalhes |
 | Fundo | `#f9f9f9` | Fundo da página |
 | Texto | `#333` | Texto principal |
-| Cinza | `#999` | Texto secundário |
+| Cinza | `#666` | Texto secundário |
 
 ### Componentes Estilizados
 
 - **Cards:** Sombra, hover effect, transições suaves
-- **Botões:** Gradiente, hover, active states
+- **Botões:** Hover, active states
 - **Inputs:** Borda customizada, focus state
 - **Grid:** Responsivo com auto-fill
 
@@ -231,7 +232,7 @@ export const environment = {
 // environment.prod.ts
 export const environment = {
   production: true,
-  apiUrl: 'https://cardapio-api.onrender.com/api'
+  apiUrl: 'https://cardapio-server.onrender.com/api'
 };
 ```
 
@@ -277,60 +278,18 @@ Abra o navegador em `http://localhost:4200`
 
 ---
 
-## 🚀 Deploy no Vercel
-
-### Passo 1: Preparar o Repositório
-
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git push -u origin main
-```
-
-### Passo 2: Conectar ao Vercel
-
-1. Acesse [vercel.com](https://vercel.com)
-2. Clique em "New Project"
-3. Importe seu repositório GitHub
-4. Configure:
-   - **Framework:** Angular
-   - **Build Command:** `ng build --configuration production`
-   - **Output Directory:** `dist/cardapio-web/browser`
-   - **Environment Variables:**
-     ```
-     ANGULAR_API_URL=https://cardapio-api.onrender.com/api
-     ```
-
-### Passo 3: Deploy
-
-Clique em "Deploy" e aguarde a conclusão
-
----
-
 ## 📚 Recursos Adicionais
+### documentações consultadas
 
 - [Angular Docs](https://angular.io/docs)
 - [Angular CLI](https://angular.io/cli)
 - [RxJS Documentation](https://rxjs.dev/)
+- [Angular Dev](https://angular.dev/)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 
----
-
-## ✅ Checklist de Implementação
-
-- [x] Estrutura LIFT
-- [x] MenuListComponent
-- [x] MenuItemCardComponent
-- [x] MenuService
-- [x] Modelos de dados
-- [x] Estilos responsivos
-- [x] Configuração de ambiente
-- [x] Documentação técnica
-- [ ] Deploy no Vercel
-- [ ] Integração com Back-end
 
 ---
 
-**Última atualização:** 2 de Dezembro de 2025  
+**Última atualização:** 6 de Dezembro de 2025  
+**Tempo total investido:** 15 horas
 **Versão:** 1.0.0

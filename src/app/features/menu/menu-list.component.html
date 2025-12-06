@@ -12,8 +12,13 @@
   <section class="filters-section">
     <!-- Busca por Nome -->
     <div class="search-box">
-      <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="searchByName()" placeholder="Buscar por nome..."
-        class="search-input" />
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (keyup.enter)="searchByName()" 
+        placeholder="Buscar por nome..."
+        class="search-input" 
+      />
       <button (click)="searchByName()" class="btn btn-search">
         <fa-icon [icon]="faSearch" fixedWidth size="xl" style="color:black"></fa-icon>
       </button>
@@ -21,39 +26,57 @@
 
     <!-- Filtro por Categoria -->
     <div class="category-filter">
-      <button (click)="clearFilters()" [class.active]="!selectedCategory && !searchTerm" class="btn btn-category">
+      <button 
+        (click)="clearFilters()" 
+        [class.active]="!selectedCategory && !searchTerm" 
+        class="btn btn-category"
+      >
         Todos
       </button>
-      <button *ngFor="let category of categories" (click)="filterByCategory(category)"
-        [class.active]="selectedCategory === category" class="btn btn-category">
-        {{ category }}
-      </button>
+      @for (category of categories; track category) {
+        <button 
+          (click)="filterByCategory(category)"
+          [class.active]="selectedCategory === category" 
+          class="btn btn-category"
+        >
+          {{ category }}
+        </button>
+      }
     </div>
   </section>
 
   <!-- Mensagem de Erro -->
-  <div *ngIf="error" class="error-message">
-    <strong>X</strong> {{ error }}
-  </div>
+  @if (error) {
+    <div class="error-message">
+      <strong>X</strong> {{ error }}
+    </div>
+  }
 
   <!-- Loading -->
-  <div *ngIf="loading" class="loading">
-    <p>Carregando cardápio...</p>
-  </div>
+  @if (loading) {
+    <div class="loading">
+      <p>Carregando cardápio...</p>
+    </div>
+  }
 
   <!-- Lista de Itens -->
-  <section *ngIf="!loading" class="menu-items">
-    <div *ngIf="filteredItems.length === 0" class="no-items">
-      <p>Nenhum item encontrado</p>
-    </div>
+  @if (!loading) {
+    <section class="menu-items">
+      @if (filteredItems.length === 0) {
+        <div class="no-items">
+          <p>Nenhum item encontrado</p>
+        </div>
+      }
 
-    <div class="items-grid" [@listAnimation]>
-      <a *ngFor="let item of filteredItems; let i = index; trackBy: trackByItemId"
-        class="card-link" [style.--i]="i">
-        <app-menu-item-card [item]="item"></app-menu-item-card>
-      </a>
-    </div>
-  </section>
+      <div class="items-grid" [@listAnimation]>
+        @for (item of filteredItems; track item.id; let idx = $index) {
+          <a class="card-link" [style.--i]="idx">
+            <app-menu-item-card [item]="item"></app-menu-item-card>
+          </a>
+        }
+      </div>
+    </section>
+  }
 
   <!-- Rodapé -->
   <footer class="menu-footer">
@@ -66,7 +89,7 @@
       <div>
         <h4>Formas de Pagamento</h4>
         <ul style="list-style: none;">
-          <li style="text-align: start; ">
+          <li style="text-align: start;">
             <p><fa-icon [icon]="faQrcode" fixedWidth></fa-icon> Pix</p>
           </li>
           <li style="text-align: start;">
