@@ -173,7 +173,6 @@
    Reduced-motion is respected via `[@.disabled]` binding on the container. */
 
 .card-link{ display:block; text-decoration:none; color:inherit; }
-.card-link app-menu-item-card{ cursor:pointer; }
 
 /* Footer */
 .menu-footer {

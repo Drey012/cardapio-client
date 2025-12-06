@@ -16,7 +16,7 @@ export class MenuService {
   private apiUrl = `${environment.apiUrl}/menu`;
 
   constructor(private http: HttpClient) {
-    console.log(`🍽️ MenuService inicializado com API URL: ${this.apiUrl}`);
+    console.log(`MenuService inicializado com API URL: ${this.apiUrl}`);
   }
 
   /**

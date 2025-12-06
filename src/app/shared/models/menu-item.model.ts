@@ -7,7 +7,6 @@ export interface MenuItem {
   descricao: string;
   preco: number;
   categoria: string;
-  // URLs das imagens do item (opcional)
   imagens?: string[];
 }
 

@@ -48,7 +48,7 @@
     </div>
 
     <div class="items-grid" [@listAnimation]>
-      <a *ngFor="let item of filteredItems; let i = index; trackBy: trackByItemId" [routerLink]="['/menu', item.id]"
+      <a *ngFor="let item of filteredItems; let i = index; trackBy: trackByItemId"
         class="card-link" [style.--i]="i">
         <app-menu-item-card [item]="item"></app-menu-item-card>
       </a>
